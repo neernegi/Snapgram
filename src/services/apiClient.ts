@@ -26,9 +26,7 @@ interface UserProfile {
 
 
 // const API_BASE_URL = import.meta.env.VITE_REACT_APP_API_BASE_URL;
-const API_BASE_URL = import.meta.env.DEV
-  ? '/api'
-  : 'https://w6eg4fo7gf.execute-api.ap-south-1.amazonaws.com';
+const API_BASE_URL = import.meta.env.VITE_REACT_APP_API_BASE_URL || 'https://w6eg4fo7gf.execute-api.ap-south-1.amazonaws.com';
 
 
 class ApiService {
