@@ -9,14 +9,7 @@ import { Button } from "../ui/button";
 import { useUserContext } from "@/context/AuthContext";
 
 
-interface User {
-  userId: string;
-  username: string;
-  fullName: string;
-  email: string;
-  imageUrl?: string;
-  bio?: string;
-}
+
 
 const Follow = () => {
   const { user: currentUser } = useUserContext();

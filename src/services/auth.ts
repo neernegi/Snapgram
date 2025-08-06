@@ -9,7 +9,7 @@ import {
   ForgotPasswordCommand,
   ConfirmForgotPasswordCommand,
   GetUserCommand,
-  UpdateUserAttributesCommand,
+
   ChangePasswordCommand,
   GlobalSignOutCommand,
 } from "@aws-sdk/client-cognito-identity-provider";
@@ -72,7 +72,7 @@ export class AuthService {
   }
 
   static async signIn(data: SignInData): Promise<AuthTokens> {
-    const isEmail = data.usernameOrEmail.includes('@');
+    
     const authParams = {
       USERNAME: data.usernameOrEmail,
       PASSWORD: data.password,

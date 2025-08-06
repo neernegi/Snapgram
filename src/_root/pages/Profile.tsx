@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Heart,
   Bookmark,
@@ -8,8 +8,7 @@ import {
   Camera,
   Trash2,
   Edit3,
-  MoreVertical,
-  X,
+
 } from "lucide-react";
 import { useUserContext } from "@/context/AuthContext";
 import { Link } from "react-router-dom";
@@ -83,33 +82,8 @@ interface LikedPost extends Post {
   };
 }
 
-interface FollowingFollower {
-  userId: string;
-  username: string;
-  fullName: string;
-  profileImage: string;
-  createdAt?: string;
-}
 
-interface UserProfile {
-  following: FollowingFollower[];
-  likedPosts: LikedPost[];
-  followers: FollowingFollower[];
-  bio: string;
-  createdAt: string;
-  email: string;
-  fullName: string;
-  profileImage: string;
-  followingCount: number;
-  postCount: number;
-  updatedAt: string;
-  userId: string;
-  followerCount: number;
-  username: string;
-  savedPosts: SavedPost[];
-  createdAtFormatted: string;
-  posts: Post[];
-}
+
 
 const ProfilePage = () => {
   // Mock data for demonstration
@@ -119,7 +93,7 @@ const ProfilePage = () => {
   const [activeTab, setActiveTab] = useState<"posts" | "liked" | "saved">(
     "posts"
   );
-  const [showEditModal, setShowEditModal] = useState(false);
+  
   const [showDeleteModal, setShowDeleteModal] = useState<string | null>(null);
   const deletePost = useDeletePost();
 
@@ -365,7 +339,7 @@ const ProfilePage = () => {
                   </h1>
                   <Link to={`/update-profile/${userProfile?.userId}`}>
                     <button
-                      onClick={() => setShowEditModal(true)}
+                    
                       className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white px-6 py-2 rounded-full font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 flex items-center space-x-2"
                     >
                       <Edit3 className="w-4 h-4" />

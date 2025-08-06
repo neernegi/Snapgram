@@ -1,11 +1,11 @@
 import Loader from "@/components/shared/Loader";
 import { useSavedPosts, useUnsavePost } from "@/hooks/usePost";
-import { useUserContext } from "@/context/AuthContext";
+
 import { Button } from "@/components/ui/button";
 import { formatDistanceToNow } from "date-fns";
 
 const Saved = () => {
-  const { user: currentUser } = useUserContext();
+
   const { data: savedPosts, isLoading, isError } = useSavedPosts();
   const { mutate: unsavePost } = useUnsavePost();
 
@@ -112,7 +112,7 @@ const Saved = () => {
                 {/* Tags if exists */}
                 {post.tags?.length > 0 && (
                   <div className="flex flex-wrap gap-2 mt-2">
-                    {post.tags.map((tag) => (
+                    {post.tags.map((tag:string) => (
                       <span
                         key={tag}
                         className="text-xs bg-slate-600 text-light-2 px-2 py-1 rounded-full"

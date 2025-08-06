@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { SignupValidationSchema } from "@/lib/schema";
 import Loader from "@/components/shared/Loader";
 import { Link } from "react-router-dom";
-import { useToast } from "@/components/ui/use-toast";
+
 import { useSignUp } from "@/hooks/useAuth";
 
 const SignupForm = () => {

@@ -160,7 +160,7 @@ const UpdateProfile = ({ profileUser, isLoading }: UpdateProfileProps) => {
       console.log("Final update data being sent:", JSON.stringify(updateData, null, 2));
 
       const updatedUser = await updateUser(updateData);
-      console.log("Update response:", updatedUser);
+  
 
       setUser({
         ...user,

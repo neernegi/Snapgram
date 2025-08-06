@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { PostValidation } from "@/lib/schema";
 import { useToast } from "@/components/ui/use-toast";
-import { useUserContext } from "@/context/AuthContext";
+
 import { useCreatePost, useUpdatePost } from "@/hooks/usePost";
 import { convertFilesToBase64, validateFiles } from "@/lib/utils";
 import FileUploader from "../shared/FileUploader";
@@ -36,7 +36,7 @@ type PostFormProps = {
 const PostForm = ({ post, action }: PostFormProps) => {
   const navigate = useNavigate();
   const { toast } = useToast();
-  const { user } = useUserContext();
+
 
   const form = useForm<z.infer<typeof PostValidation>>({
     resolver: zodResolver(PostValidation),
@@ -71,7 +71,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
 
      
 
-      const { valid: validFiles, errors } = validateFiles(value.file);
+      const { valid: validFiles } = validateFiles(value.file);
 
       if (validFiles.length > 2) {
         toast({

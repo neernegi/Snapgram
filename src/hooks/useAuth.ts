@@ -1,6 +1,6 @@
 // src/hooks/useAuth.ts
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { AuthService, SignUpData, SignInData, AuthTokens } from '../services/auth';
+import { AuthService, SignUpData, SignInData} from '../services/auth';
 
 import { useToast } from '@/components/ui/use-toast';
 import { useNavigate } from 'react-router-dom';

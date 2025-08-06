@@ -161,7 +161,7 @@ export const useDeleteComment = () => {
   return useMutation({
     mutationFn: ({ postId, commentId }: { postId: string; commentId: string }) =>
       apiService.deleteComment(postId, commentId),
-    onSuccess: (data, { postId }) => {
+    onSuccess: (postId) => {
       queryClient.invalidateQueries({ queryKey: ['post', postId] });
     },
     onError: (error: any) => {

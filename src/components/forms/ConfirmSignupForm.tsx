@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import {   useSearchParams } from "react-router-dom";
 import { useToast } from "@/components/ui/use-toast";
 // import { useConfirmSignUp, useResendConfirmationCode } from "@/lib/react-query/queriesAndMutations";
 import Loader from "@/components/shared/Loader";
@@ -20,7 +20,7 @@ const ConfirmSignup = () => {
   const [searchParams] = useSearchParams();
   const username = searchParams.get('username') || '';
   const { toast } = useToast();
-  const navigate = useNavigate();
+
 
   const { mutateAsync: confirmSignUp, isPending: isConfirming } = useConfirmSignUp();
   const { mutateAsync: resendCode, isPending: isResending } = useResendConfirmationCode();
