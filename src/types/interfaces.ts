@@ -1,103 +1,103 @@
 
 export interface Like {
-    userId: string;
-    createdAt?: string;
+  userId: string;
+  createdAt?: string;
 }
 
 export interface Comment {
-    userId: string;
-    text: string;
-    createdAt?: string;
-    commentId?: string;
-    user?: {
-        username: string;
-        profileImage?: string;
-    };
+  userId: string;
+  text: string;
+  createdAt?: string;
+  commentId?: string;
+  user?: {
+    username: string;
+    profileImage?: string;
+  };
 }
 
 
 
 export interface Post {
-    postId: string;
-    caption: string;
-    images: string[];
-    tags: string[];
-    likesCount: number;
-    commentsCount: number;
-    createdAt: string;
-    updatedAt?: string;
-    likes?: Like[];
-    comments?: Comment[];
-    owner?: {
-        userId: string;
-        username: string;
-        fullName: string;
-        profileImage: string;
-    };
+  postId: string;
+  caption: string;
+  images: string[];
+  tags: string[];
+  likesCount: number;
+  commentsCount: number;
+  createdAt: string;
+  updatedAt?: string;
+  likes?: Like[];
+  comments?: Comment[];
+  owner?: {
+    userId: string;
+    username: string;
+    fullName: string;
+    profileImage: string;
+  };
 }
 
 export interface SavedPost extends Post {
-    savedAt: string;
-    savedAtFormatted: string;
-    owner: {
-        userId: string;
-        username: string;
-        fullName: string;
-        profileImage: string;
-    };
+  savedAt: string;
+  savedAtFormatted: string;
+  owner: {
+    userId: string;
+    username: string;
+    fullName: string;
+    profileImage: string;
+  };
 }
 
 export interface LikedPost extends Post {
-    likedAt: string;
-    likedAtFormatted: string;
-    owner: {
-        userId: string;
-        username: string;
-        fullName: string;
-        profileImage: string;
-    };
+  likedAt: string;
+  likedAtFormatted: string;
+  owner: {
+    userId: string;
+    username: string;
+    fullName: string;
+    profileImage: string;
+  };
 }
 
 
 export interface ProfileUser {
-    bio: string;
-    createdAt: string;
-    email: string;
-    fullName: string;
-    profileImage: string;
-    followingCount: number;
-    postCount: number;
-    updatedAt: string;
-    userId: string;
-    followerCount: number;
-    username: string;
-};
+  bio: string;
+  createdAt: string;
+  email: string;
+  fullName: string;
+  profileImage: string;
+  followingCount: number;
+  postCount: number;
+  updatedAt: string;
+  userId: string;
+  followerCount: number;
+  username: string;
+}
 
 
 export interface GridPostListProps {
-    posts: {
-        postId: string;
-        images: string[];
-        caption?: string;
-        userId: string;
-        likes: { userId: string; createdAt: string }[];
-        comments: { userId: string; text: string; createdAt: string }[];
-        tags: string[];
-        createdAt: string;
-        user?: {
-            userId: string;
-            username: string;
-            profileImage?: string;
-            displayName?: string;
-        };
-    }[];
-    showUser?: boolean;
-    showStats?: boolean;
-    currentUser?: {
-        userId: string;
-        savedPosts?: string[];
+  posts: {
+    postId: string;
+    images: string[];
+    caption?: string;
+    userId: string;
+    likes: { userId: string; createdAt: string }[];
+    comments: { userId: string; text: string; createdAt: string }[];
+    tags: string[];
+    createdAt: string;
+    user?: {
+      userId: string;
+      username: string;
+      profileImage?: string;
+      displayName?: string;
     };
-};
+  }[];
+  showUser?: boolean;
+  showStats?: boolean;
+  currentUser?: {
+    userId: string;
+    savedPosts?: string[];
+  };
+}
 
 
 export interface CommentItem {
@@ -109,9 +109,9 @@ export interface CommentItem {
     username: string;
     profileImage?: string;
   };
-};
+}
 
-export interface PostCardProps{
+export interface PostCardProps {
   post: {
     postId: string;
     userId: string;
@@ -127,7 +127,7 @@ export interface PostCardProps{
       profileImage?: string;
       displayName?: string;
     };
-  };
+  }
   currentUser?: {
     savedPosts?: string[];
     profileImage?: string;
@@ -135,7 +135,7 @@ export interface PostCardProps{
     username: string;
     displayName?: string;
   };
-};
+}
 
 
 
@@ -205,6 +205,6 @@ export interface AuthUserProfile {
   followers?: FollowUser[];
   followingCount?: number;
   followerCount?: number;
-  postCount?:Number
+  postCount?: number
 }
 
