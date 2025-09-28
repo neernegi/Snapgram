@@ -4,20 +4,7 @@ import { AuthService } from "@/services/auth";
 import { apiService } from "@/services/apiClient";
 import { Comment, FollowingFollower, IUser, Like, LikedPost, Post, SavedPost, UserProfile } from "@/types/interfaces";
 import { formatDate } from "@/lib/utils";
-
-
-
-export const INITIAL_USER: IUser = {
-  userId: "",
-  name: "",
-  username: "",
-  email: "",
-  imageUrl: "",
-  bio: "",
-  followerCount: 0,
-  followingCount: 0,
-  postCount: 0,
-};
+import { INITIAL_USER, INITIAL_STATE } from "@/constants/auth";
 
 type IContextType = {
   user: IUser;
@@ -28,17 +15,6 @@ type IContextType = {
   isAuthenticated: boolean;
   setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
   checkAuthUser: () => Promise<boolean>;
-};
-
-const INITIAL_STATE = {
-  user: INITIAL_USER,
-  userProfile: undefined,
-  isLoading: false,
-  isAuthenticated: false,
-  setUser: () => {},
-  setUserProfile: () => {},
-  setIsAuthenticated: () => {},
-  checkAuthUser: async () => false as boolean,
 };
 
 const AuthContext = createContext<IContextType>(INITIAL_STATE);
@@ -85,7 +61,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         AuthService.clearTokens();
         return false;
       }
-      console.log("api user",apiUser)
 
       const userData: IUser = {
         userId: apiUser.userId,
@@ -128,10 +103,10 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           likedAt: post.likedAt || new Date().toISOString(),
           likedAtFormatted: post.likedAtFormatted || formatDate(new Date(post.likedAt || new Date())),
           owner: {
-        userId: post.owner?.userId || apiUser.userId,
-        username: post.owner?.username || apiUser.username || '',
-        fullName: post.owner?.fullName || apiUser.fullName || '',
-        profileImage: post.owner?.profileImage || apiUser.profileImage || ''
+            userId: post.owner?.userId || apiUser.userId,
+            username: post.owner?.username || apiUser.username || '',
+            fullName: post.owner?.fullName || apiUser.fullName || '',
+            profileImage: post.owner?.profileImage || apiUser.profileImage || ''
           }
         })) || []) as LikedPost[],
         savedPosts: (apiUser.savedPosts?.map((post: any): SavedPost => ({
@@ -148,10 +123,10 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           savedAt: post.savedAt || new Date().toISOString(),
           savedAtFormatted: post.savedAtFormatted || formatDate(new Date(post.savedAt || new Date())),
           owner: {
-        userId: post.owner?.userId || apiUser.userId,
-        username: post.owner?.username || apiUser.username || '',
-        fullName: post.owner?.fullName || apiUser.fullName || '',
-        profileImage: post.owner?.profileImage || apiUser.profileImage || ''
+            userId: post.owner?.userId || apiUser.userId,
+            username: post.owner?.username || apiUser.username || '',
+            fullName: post.owner?.fullName || apiUser.fullName || '',
+            profileImage: post.owner?.profileImage || apiUser.profileImage || ''
           }
         })) || []) as SavedPost[],
         posts: (apiUser.posts?.map((post: any): Post => ({
@@ -168,7 +143,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         })) || []) as Post[]
       };
 
-      // console.log("-- user profile data---",userProfileData)
       setUser(userData);
       setUserProfile(userProfileData);
       setIsAuthenticated(true);
