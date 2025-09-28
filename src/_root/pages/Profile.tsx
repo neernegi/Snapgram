@@ -10,9 +10,9 @@ import {
   Edit3,
 
 } from "lucide-react";
-import { useUserContext } from "@/context/AuthContext";
 import { Link } from "react-router-dom";
 import { LikedPost, Post, SavedPost } from "@/types/interfaces";
+import { useUserContext } from "@/hooks/useUserContext";
 
 // Mock hook for demonstration - replace with your actual hook
 const useDeletePost = () => {

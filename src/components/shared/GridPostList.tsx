@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
-import { useUserContext } from "@/context/AuthContext";
 import PostStats from "./PostStats";
 import { GridPostListProps } from "@/types/interfaces";
+import { useUserContext } from "@/hooks/useUserContext";
 
 
 const GridPostList = ({

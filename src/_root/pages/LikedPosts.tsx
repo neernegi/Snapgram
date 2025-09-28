@@ -1,7 +1,8 @@
 import GridPostList from "@/components/shared/GridPostList";
 import Loader from "@/components/shared/Loader";
 import { useLikedPosts } from "@/hooks/usePost"; // Updated import
-import { useUserContext } from "@/context/AuthContext";
+import { useUserContext } from "@/hooks/useUserContext";
+
 
 const LikedPosts = () => {
   const { user: currentUser } = useUserContext();

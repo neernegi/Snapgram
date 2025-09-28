@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { Button } from "../ui/button";
-import { useUserContext } from "@/context/AuthContext";
 import { useSignOut } from "@/hooks/useAuth";
+import { useUserContext } from "@/hooks/useUserContext";
 
 const Topbar = () => {
   const navigate = useNavigate();

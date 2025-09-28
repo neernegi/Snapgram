@@ -6,7 +6,7 @@ import {
 } from "../../hooks/useAuth";
 import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
-import { useUserContext } from "@/context/AuthContext";
+import { useUserContext } from "@/hooks/useUserContext";
 
 
 

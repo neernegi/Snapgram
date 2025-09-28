@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { useUserContext } from "@/context/AuthContext";
 import Loader from "@/components/shared/Loader";
 import {
   useFollowUser,
@@ -9,6 +8,7 @@ import {
   useGetAllUsers,
   useGetCurrentUserFollowing,
 } from "@/hooks/useAuth";
+import { useUserContext } from "@/hooks/useUserContext";
 
 const UserCard = ({ compact = false }: { compact?: boolean }) => {
   const { user: currentUser } = useUserContext();

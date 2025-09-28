@@ -5,8 +5,8 @@ import { AuthService, SignUpData, SignInData} from '../services/auth';
 import { useToast } from '@/components/ui/use-toast';
 import { useNavigate } from 'react-router-dom';
 import { apiService } from '@/services/apiClient';
-import { useUserContext } from '@/context/AuthContext';
 import { AuthUserProfile, FollowUser } from '@/types/interfaces';
+import { useUserContext } from './useUserContext';
 
 
 

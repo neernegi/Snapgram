@@ -1,4 +1,3 @@
-import { useUserContext } from "@/context/AuthContext";
 import { Link } from "react-router-dom";
 import PostStats from "./PostStats";
 import { multiFormatDateString } from "@/lib/utils";
@@ -9,6 +8,7 @@ import Loader from "./Loader";
 import { Separator } from "../ui/separator";
 import { useQueryClient } from "@tanstack/react-query";
 import { CommentItem, PostCardProps } from "@/types/interfaces";
+import { useUserContext } from "@/hooks/useUserContext";
 
 
 

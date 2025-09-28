@@ -5,10 +5,10 @@ import { sidebarLinks } from "@/constants";
 
 import { Button } from "@/components/ui/button";
 
-import { useUserContext } from "@/context/AuthContext";
 import Loader from "./Loader";
 import { useSignOut } from "@/hooks/useAuth";
 import { INITIAL_USER } from "@/constants/auth";
+import { useUserContext } from "@/hooks/useUserContext";
 
 const LeftSidebar = () => {
   const navigate = useNavigate();

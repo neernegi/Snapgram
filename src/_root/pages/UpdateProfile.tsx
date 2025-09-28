@@ -14,7 +14,6 @@ import {
 } from "@/components/ui/form";
 import { useToast } from "@/components/ui/use-toast";
 import { ProfileValidation } from "@/lib/schema";
-import { useUserContext } from "@/context/AuthContext";
 import Loader from "@/components/shared/Loader";
 import ProfileUploader from "@/components/shared/ProfileUploader";
 import { Input } from "@/components/ui/input";
@@ -23,6 +22,7 @@ import { Button } from "@/components/ui/button";
 import { useUpdateProfile } from "@/hooks/useAuth";
 import { convertFileToBase64 } from "@/lib/utils";
 import { ProfileUser } from "@/types/interfaces";
+import { useUserContext } from "@/hooks/useUserContext";
 
 type UpdateProfileProps = {
   profileUser?: ProfileUser;
