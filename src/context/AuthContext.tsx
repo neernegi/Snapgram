@@ -3,18 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthService } from "@/services/auth";
 import { apiService } from "@/services/apiClient";
 import { Comment, FollowingFollower, IUser, Like, LikedPost, Post, SavedPost, UserProfile } from "@/types/interfaces";
-
-// Helper function for date formatting
-function formatDate(date: Date | string): string {
-  const d = new Date(date);
-  return d.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit'
-  });
-}
+import { formatDate } from "@/lib/utils";
 
 
 

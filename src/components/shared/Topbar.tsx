@@ -5,7 +5,6 @@ import { Button } from "../ui/button";
 import { useUserContext } from "@/context/AuthContext";
 import { useSignOut } from "@/hooks/useAuth";
 
-
 const Topbar = () => {
   const navigate = useNavigate();
   const { user } = useUserContext();
@@ -13,7 +12,7 @@ const Topbar = () => {
 
   useEffect(() => {
     if (isSuccess) navigate(0);
-  }, [isSuccess]);
+  }, [isSuccess, navigate]);
 
   return (
     <section className="topbar">
@@ -25,14 +24,24 @@ const Topbar = () => {
             width={130}
             height={325}
           />
-          <h3 style={{marginLeft:"-6.7rem",fontSize:"1.4rem",fontWeight:"bold",color:"white"}}>DevGram</h3>
+          <h3
+            style={{
+              marginLeft: "-6.7rem",
+              fontSize: "1.4rem",
+              fontWeight: "bold",
+              color: "white",
+            }}
+          >
+            DevGram
+          </h3>
         </Link>
 
         <div className="flex gap-4">
           <Button
             variant="ghost"
             className="shad-button_ghost"
-            onClick={() => signOut()}>
+            onClick={() => signOut()}
+          >
             <img src="/assets/icons/logout.svg" alt="logout" />
           </Button>
           <Link to={`/profile/${user.userId}`} className="flex-center gap-3">

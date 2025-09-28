@@ -2,7 +2,7 @@ import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 
 import {
   Form,
@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/form";
 import { useToast } from "@/components/ui/use-toast";
 import { ProfileValidation } from "@/lib/schema";
-import { useUserContext } from "@/context/AuthContext"; 
+import { useUserContext } from "@/context/AuthContext";
 import Loader from "@/components/shared/Loader";
 import ProfileUploader from "@/components/shared/ProfileUploader";
 import { Input } from "@/components/ui/input";
@@ -23,7 +23,6 @@ import { Button } from "@/components/ui/button";
 import { useUpdateProfile } from "@/hooks/useAuth";
 import { convertFileToBase64 } from "@/lib/utils";
 import { ProfileUser } from "@/types/interfaces";
-
 
 type UpdateProfileProps = {
   profileUser?: ProfileUser;
@@ -35,11 +34,11 @@ const UpdateProfile = ({ profileUser, isLoading }: UpdateProfileProps) => {
   const navigate = useNavigate();
   const { id } = useParams();
   const { user, setUser } = useUserContext();
-  
+
   const form = useForm<z.infer<typeof ProfileValidation>>({
     resolver: zodResolver(ProfileValidation),
     defaultValues: {
-      file: '',
+      file: "",
       name: "",
       username: "",
       email: "",
@@ -47,19 +46,22 @@ const UpdateProfile = ({ profileUser, isLoading }: UpdateProfileProps) => {
     },
   });
 
-  const { mutateAsync: updateUser, isPending: isLoadingUpdate } = useUpdateProfile();
+  const { mutateAsync: updateUser, isPending: isLoadingUpdate } =
+    useUpdateProfile();
 
-  // Use prop data if available, otherwise use current user data
-  const currentUser = profileUser || {
-    userId: user.userId,
-    username: user.username,
-    fullName: user.name,
-    email: user.email,
-    bio: user.bio,
-    profileImage: user.imageUrl,
-  };
+  const currentUser = useMemo(() => {
+    return (
+      profileUser || {
+        userId: user.userId,
+        username: user.username,
+        fullName: user.name,
+        email: user.email,
+        bio: user.bio,
+        profileImage: user.imageUrl,
+      }
+    );
+  }, [profileUser, user]);
 
-  // Update form defaults when user data is available
   useEffect(() => {
     if (currentUser?.userId && !form.formState.isDirty) {
       form.reset({
@@ -70,7 +72,7 @@ const UpdateProfile = ({ profileUser, isLoading }: UpdateProfileProps) => {
         bio: currentUser.bio || "",
       });
     }
-  }, [currentUser?.userId, form, form.formState.isDirty]);
+  }, [currentUser, form, form.formState.isDirty]);
 
   if (isLoading) {
     return (
@@ -83,7 +85,7 @@ const UpdateProfile = ({ profileUser, isLoading }: UpdateProfileProps) => {
   const handleUpdate = async (value: z.infer<typeof ProfileValidation>) => {
     try {
       console.log("Form values:", value);
-      
+
       // Start with basic update data - no image first
       const updateData: any = {
         fullName: value.name,
@@ -98,9 +100,9 @@ const UpdateProfile = ({ profileUser, isLoading }: UpdateProfileProps) => {
         console.log("File selected:", {
           name: file.name,
           size: file.size,
-          type: file.type
+          type: file.type,
         });
-        
+
         // Validate file size (5MB max)
         if (file.size > 5 * 1024 * 1024) {
           toast({
@@ -125,7 +127,10 @@ const UpdateProfile = ({ profileUser, isLoading }: UpdateProfileProps) => {
           console.log("Converting file to base64...");
           // Convert file to base64 - pass the single file, not an array
           const base64String = await convertFileToBase64(file);
-          console.log("Base64 conversion successful, length:", base64String?.length);
+          console.log(
+            "Base64 conversion successful, length:",
+            base64String?.length
+          );
 
           updateData.imageData = {
             base64: base64String,
@@ -145,10 +150,12 @@ const UpdateProfile = ({ profileUser, isLoading }: UpdateProfileProps) => {
         console.log("No new file selected, skipping image update");
       }
 
-      console.log("Final update data being sent:", JSON.stringify(updateData, null, 2));
+      console.log(
+        "Final update data being sent:",
+        JSON.stringify(updateData, null, 2)
+      );
 
       const updatedUser = await updateUser(updateData);
-  
 
       setUser({
         ...user,
@@ -164,16 +171,17 @@ const UpdateProfile = ({ profileUser, isLoading }: UpdateProfileProps) => {
       navigate(`/profile/${id}`);
     } catch (error) {
       console.error("Error updating profile:", error);
-      
+
       // Log more details about the error
       if (error instanceof Error) {
         console.error("Error message:", error.message);
         console.error("Error stack:", error.stack);
       }
-      
+
       toast({
         title: "Update failed",
-        description: error instanceof Error ? error.message : "Please try again",
+        description:
+          error instanceof Error ? error.message : "Please try again",
         variant: "destructive",
       });
     }
@@ -184,14 +192,14 @@ const UpdateProfile = ({ profileUser, isLoading }: UpdateProfileProps) => {
     try {
       console.log("Testing basic update without image...");
       const basicData = {
-        fullName: form.getValues('name') || 'Test Name',
-        bio: form.getValues('bio') || 'Test Bio',
+        fullName: form.getValues("name") || "Test Name",
+        bio: form.getValues("bio") || "Test Bio",
       };
-      
+
       console.log("Basic test data:", basicData);
       const result = await updateUser(basicData);
       console.log("Basic update result:", result);
-      
+
       toast({
         title: "Basic update successful!",
       });
@@ -199,7 +207,8 @@ const UpdateProfile = ({ profileUser, isLoading }: UpdateProfileProps) => {
       console.error("Basic update failed:", error);
       toast({
         title: "Basic update failed",
-        description: error instanceof Error ? error.message : "Please try again",
+        description:
+          error instanceof Error ? error.message : "Please try again",
         variant: "destructive",
       });
     }
@@ -245,7 +254,9 @@ const UpdateProfile = ({ profileUser, isLoading }: UpdateProfileProps) => {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="shad-form_label">Display Name</FormLabel>
+                  <FormLabel className="shad-form_label">
+                    Display Name
+                  </FormLabel>
                   <FormControl>
                     <Input type="text" className="shad-input" {...field} />
                   </FormControl>
@@ -261,11 +272,11 @@ const UpdateProfile = ({ profileUser, isLoading }: UpdateProfileProps) => {
                 <FormItem>
                   <FormLabel className="shad-form_label">Username</FormLabel>
                   <FormControl>
-                    <Input 
-                      type="text" 
-                      className="shad-input" 
-                      {...field} 
-                      disabled 
+                    <Input
+                      type="text"
+                      className="shad-input"
+                      {...field}
+                      disabled
                     />
                   </FormControl>
                   <FormMessage />
@@ -317,7 +328,7 @@ const UpdateProfile = ({ profileUser, isLoading }: UpdateProfileProps) => {
               >
                 Cancel
               </Button>
-              
+
               {/* Debug button - remove this after fixing the issue */}
               <Button
                 type="button"
@@ -326,7 +337,7 @@ const UpdateProfile = ({ profileUser, isLoading }: UpdateProfileProps) => {
               >
                 Test Basic Update
               </Button>
-              
+
               <Button
                 type="submit"
                 className="shad-button_primary whitespace-nowrap"

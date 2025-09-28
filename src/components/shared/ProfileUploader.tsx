@@ -12,14 +12,15 @@ const ProfileUploader = ({ fieldChange, mediaUrl }: ProfileUploaderProps) => {
   const [file, setFile] = useState<File[]>([]);
   const [fileUrl, setFileUrl] = useState<string>(mediaUrl);
 
-  const onDrop = useCallback(
-    (acceptedFiles: FileWithPath[]) => {
-      setFile(acceptedFiles);
-      fieldChange(acceptedFiles);
-      setFileUrl(convertFileToUrl(acceptedFiles[0]));
-    },
-    [file]
-  );
+  console.log(file);
+ const onDrop = useCallback(
+  (acceptedFiles: FileWithPath[]) => {
+    setFile(acceptedFiles);
+    fieldChange(acceptedFiles);
+    setFileUrl(convertFileToUrl(acceptedFiles[0]));
+  },
+  [fieldChange] // ✅ add prop to dependencies
+);
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
