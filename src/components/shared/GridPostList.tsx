@@ -2,31 +2,8 @@ import { Link } from "react-router-dom";
 
 import { useUserContext } from "@/context/AuthContext";
 import PostStats from "./PostStats";
+import { GridPostListProps } from "@/types/interfaces";
 
-type GridPostListProps = {
-  posts: {
-    postId: string;
-    images: string[];
-    caption?: string;
-    userId: string;
-    likes: { userId: string; createdAt: string }[];
-    comments: { userId: string; text: string; createdAt: string }[];
-    tags: string[];
-    createdAt: string;
-    user?: {
-      userId: string;
-      username: string;
-      profileImage?: string;
-      displayName?: string;
-    };
-  }[];
-  showUser?: boolean;
-  showStats?: boolean;
-  currentUser?: {
-    userId: string;
-    savedPosts?: string[];
-  };
-};
 
 const GridPostList = ({
   posts,

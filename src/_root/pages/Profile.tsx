@@ -12,75 +12,20 @@ import {
 } from "lucide-react";
 import { useUserContext } from "@/context/AuthContext";
 import { Link } from "react-router-dom";
+import { LikedPost, Post, SavedPost } from "@/types/interfaces";
 
 // Mock hook for demonstration - replace with your actual hook
 const useDeletePost = () => {
   return {
     mutate: (postId: string) => {
       console.log("Deleting post:", postId);
-      // Your actual delete logic here
+     
     },
     isLoading: false,
   };
 };
 
-// Type Definitions
-interface Like {
-  userId: string;
-  createdAt?: string;
-}
 
-interface Comment {
-  userId: string;
-  text: string;
-  createdAt?: string;
-  commentId?: string;
-  user?: {
-    username: string;
-    profileImage?: string;
-  };
-}
-
-interface Post {
-  postId: string;
-  caption: string;
-  images: string[];
-  tags: string[];
-  likesCount: number;
-  commentsCount: number;
-  createdAt: string;
-  updatedAt?: string;
-  likes?: Like[];
-  comments?: Comment[];
-  owner?: {
-    userId: string;
-    username: string;
-    fullName: string;
-    profileImage: string;
-  };
-}
-
-interface SavedPost extends Post {
-  savedAt: string;
-  savedAtFormatted: string;
-  owner: {
-    userId: string;
-    username: string;
-    fullName: string;
-    profileImage: string;
-  };
-}
-
-interface LikedPost extends Post {
-  likedAt: string;
-  likedAtFormatted: string;
-  owner: {
-    userId: string;
-    username: string;
-    fullName: string;
-    profileImage: string;
-  };
-}
 
 
 

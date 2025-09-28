@@ -8,43 +8,9 @@ import { Input } from "../ui/input";
 import Loader from "./Loader";
 import { Separator } from "../ui/separator";
 import { useQueryClient } from "@tanstack/react-query";
+import { CommentItem, PostCardProps } from "@/types/interfaces";
 
-type CommentItem = {
-  commentId: string;
-  text: string;
-  createdAt: string | Date;
-  owner: {
-    userId: string;
-    username: string;
-    profileImage?: string;
-  };
-};
 
-type PostCardProps = {
-  post: {
-    postId: string;
-    userId: string;
-    caption: string;
-    images: string[];
-    tags: string[];
-    likes: { userId: string; createdAt: string }[];
-    comments: CommentItem[];
-    createdAt: string;
-    user?: {
-      userId: string;
-      username: string;
-      profileImage?: string;
-      displayName?: string;
-    };
-  };
-  currentUser?: {
-    savedPosts?: string[];
-    profileImage?: string;
-    userId: string;
-    username: string;
-    displayName?: string;
-  };
-};
 
 const PostCard = ({ post, currentUser }: PostCardProps) => {
   const queryClient = useQueryClient();

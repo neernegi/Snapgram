@@ -6,30 +6,11 @@ import { useToast } from '@/components/ui/use-toast';
 import { useNavigate } from 'react-router-dom';
 import { apiService } from '@/services/apiClient';
 import { useUserContext } from '@/context/AuthContext';
+import { AuthUserProfile, FollowUser } from '@/types/interfaces';
 
-interface FollowUser {
-  userId: string;
-  username: string;
-  fullName?: string;
-  profileImage?: string;
-  createdAt?: string;
-}
 
-interface UserProfile {
-  userId: string;
-  username: string;
-  fullName: string;
-  email: string;
-  bio?: string;
-  profileImage?: string;
-  createdAt: string;
-  updatedAt: string;
-  following?: FollowUser[];
-  followers?: FollowUser[];
-  followingCount?: number;
-  followerCount?: number;
-  postCount?:Number
-}
+
+
 
 export const useSignUp = () => {
   const navigate = useNavigate();
@@ -118,9 +99,9 @@ export const useResendConfirmationCode = () => {
 };
 
 export const useGetAllUsers = () => {
-  return useQuery<UserProfile[]>({
+  return useQuery<AuthUserProfile[]>({
     queryKey: ['allUsers'],
-    queryFn: async (): Promise<UserProfile[]> => {
+    queryFn: async (): Promise<AuthUserProfile[]> => {
       try {
         const users = await apiService.getAllUsers();
         return users || [];
@@ -135,7 +116,7 @@ export const useGetAllUsers = () => {
 
 // Update useCurrentUser hook
 export const useCurrentUser = () => {
-  return useQuery<UserProfile | null>({
+  return useQuery<AuthUserProfile | null>({
     queryKey: ['currentUser'],
     queryFn: async () => {
       if (!AuthService.isAuthenticated()) return null;
@@ -181,7 +162,7 @@ export const useSignOut = () => {
   });
 };
 export const useUserByUsername = (username: string) => {
-  return useQuery<UserProfile>({
+  return useQuery<AuthUserProfile>({
     queryKey: ['user', username],
     queryFn: () => apiService.getUserByUsername(username),
     enabled: !!username,
@@ -193,7 +174,7 @@ export const useUpdateProfile = () => {
   const { toast } = useToast();
 
   return useMutation({
-    mutationFn: (data: Partial<UserProfile>) => apiService.updateUserProfile(data),
+    mutationFn: (data: Partial<AuthUserProfile>) => apiService.updateUserProfile(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['currentUser'] });
       toast({

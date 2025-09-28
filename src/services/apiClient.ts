@@ -1,28 +1,8 @@
+import { AuthUserProfile, FollowUser } from '@/types/interfaces';
 import { AuthService } from './auth';
 
-interface FollowUser {
-  userId: string;
-  username: string;
-  fullName?: string;
-  profileImage?: string;
-  createdAt?: string;
-}
 
-interface UserProfile {
-  userId: string;
-  username: string;
-  fullName: string;
-  email: string;
-  bio?: string;
-  profileImage?: string;
-  createdAt: string;
-  updatedAt: string;
-  following?: FollowUser[];
-  followers?: FollowUser[];
-  followingCount?: number;
-  followerCount?: number;
-  postCount?:number
-}
+
 
 
 // const API_BASE_URL = import.meta.env.VITE_REACT_APP_API_BASE_URL;
@@ -86,8 +66,8 @@ class ApiService {
     return response.json();
   }
 
-  async getAllUsers(): Promise<UserProfile[]> {
-    return this.request<UserProfile[]>('/getAllUsers');
+  async getAllUsers(): Promise<AuthUserProfile[]> {
+    return this.request<AuthUserProfile[]>('/getAllUsers');
   }
 
   // User methods

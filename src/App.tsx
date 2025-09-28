@@ -17,16 +17,7 @@ import {
   UpdateProfile,
 } from "./_root/pages";
 import RootLayout from "./_root/RootLayout";
-// import {
-//   AllUsers,
-//   CreatePost,
-//   EditPost,
-//   Home,
-//   PostDetails,
-//   Profile,
-//   Saved,
-//   UpdateProfile,
-// } from "./_root/pages";
+
 
 export default function App() {
   return (

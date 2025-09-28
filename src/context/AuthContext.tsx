@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthService } from "@/services/auth";
 import { apiService } from "@/services/apiClient";
+import { Comment, FollowingFollower, IUser, Like, LikedPost, Post, SavedPost, UserProfile } from "@/types/interfaces";
 
 // Helper function for date formatting
 function formatDate(date: Date | string): string {
@@ -15,97 +16,7 @@ function formatDate(date: Date | string): string {
   });
 }
 
-// Type Definitions
-interface Like {
-  userId: string;
-  createdAt?: string;
-}
 
-interface Comment {
-  userId: string;
-  text: string;
-  createdAt?: string;
-  commentId?: string;
-  user?: {
-    username: string;
-    profileImage?: string;
-  };
-}
-
-interface Post {
-  postId: string;
-  caption: string;
-  images: string[];
-  tags: string[];
-  likesCount: number;
-  commentsCount: number;
-  createdAt: string;
-  updatedAt?: string;
-  likes?: Like[];
-  comments?: Comment[];
-}
-
-interface SavedPost extends Post {
-  savedAt: string;
-  savedAtFormatted: string;
-  owner: {
-    userId: string;
-    username: string;
-    fullName: string;
-    profileImage: string;
-  };
-}
-
-interface LikedPost extends Post {
-  likedAt: string;
-  likedAtFormatted: string;
-  owner: {
-    userId: string;
-    username: string;
-    fullName: string;
-    profileImage: string;
-  };
-}
-
-interface FollowingFollower {
-  userId: string;
-  username: string;
-  fullName: string;
-  profileImage: string;
-  createdAt?: string;
-}
-
-export interface UserProfile {
-  following: FollowingFollower[];
-  likedPosts: LikedPost[];
-  followers: FollowingFollower[];
-  bio: string;
-  createdAt: string;
-  email: string;
-  fullName: string;
-  profileImage: string;
-  followingCount: number;
-  postCount: number;
-  updatedAt: string;
-  userId: string;
-  followerCount: number;
-  username: string;
-  savedPosts: SavedPost[];
-  createdAtFormatted: string;
-  posts: Post[];
-}
-
-export interface IUser {
-  userId: string;
-  name: string;
-  username: string;
-  email: string;
-  imageUrl: string;
-  bio: string;
-  followerCount?: number;
-  followingCount?: number;
-  postCount?: number;
-}
 
 export const INITIAL_USER: IUser = {
   userId: "",

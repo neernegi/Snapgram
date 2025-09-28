@@ -22,20 +22,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useUpdateProfile } from "@/hooks/useAuth";
 import { convertFileToBase64 } from "@/lib/utils";
+import { ProfileUser } from "@/types/interfaces";
 
-type ProfileUser = {
-  bio: string;
-  createdAt: string;
-  email: string;
-  fullName: string;
-  profileImage: string;
-  followingCount: number;
-  postCount: number;
-  updatedAt: string;
-  userId: string;
-  followerCount: number;
-  username: string;
-};
 
 type UpdateProfileProps = {
   profileUser?: ProfileUser;

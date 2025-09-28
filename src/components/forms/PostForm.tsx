@@ -27,7 +27,6 @@ type PostFormProps = {
     postId: string;
     caption: string;
     images: string[];
-
     tags: string[];
   };
   action: "Create" | "Update";
