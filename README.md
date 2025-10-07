@@ -1,30 +1,98 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+https://github.com/user-attachments/assets/c1443e44-8bd7-4b5e-9d11-d31ae71cb1d6
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+📸 Snapgram
 
-## Expanding the ESLint configuration
+Snapgram is a full-stack serverless social media web app where users can post, like, comment, save posts, follow/unfollow others, and manage their profiles — all with real-time updates and a smooth, responsive UI.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+It is built with a modern frontend stack and a fully serverless AWS backend for scalability, speed, and security.
 
-- Configure the top-level `parserOptions` property like this:
+🚀 Tech Stack
+🖥️ Frontend
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+React.js (Vite + TypeScript)
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+React Query (TanStack Query)
+
+Tailwind CSS
+
+ShadCN UI
+
+Zod (for form validation)
+
+☁️ Backend (Serverless on AWS)
+
+AWS Cognito – Secure user authentication
+
+AWS DynamoDB (via Dynamoose) – Scalable NoSQL data storage
+
+AWS S3 – Media file handling (images & videos)
+
+AWS Lambda – Serverless backend logic
+
+AWS CloudFormation – Infrastructure as Code (IaC)
+
+AWS CloudFront – Global CDN for fast content delivery
+
+💡 Key Features
+
+🖋️ Post Creation — Share images, captions, and updates
+
+❤️ Like & Comment System — Engage with other users in real-time
+
+💾 Save Posts — Bookmark your favorite content
+
+🔄 Follow / Unfollow — Connect and build your network
+
+👤 Profile Management — Update user details and profile media
+
+⚡ Real-time Updates — Powered by TanStack Query for instant UI refresh
+
+🔒 Secure Authentication — Fully managed by AWS Cognito
+
+☁️ Serverless & Scalable — Deployed entirely on AWS Lambda + DynamoDB
+
+🧰 Local Development Setup
+
+Clone the repository
+
+git clone https://github.com/neernegi/snapgram.git
+cd snapgram
+
+
+Install dependencies
+
+npm install
+
+
+Set up local AWS environment
+
+Start DynamoDB Local and MinIO (S3 alternative) for local testing
+
+Configure AWS credentials for local environment
+
+Run the app locally
+
+npm run dev
+
+🧪 Testing & Deployment
+
+Local Testing: AWS SAM CLI (for Lambda & API Gateway simulation)
+
+CI/CD: Automated with GitHub Actions
+
+Docker Support: Containerized environment for consistent builds
+
+🌐 Deployment Architecture
+Frontend (React + Vite)  →  CloudFront (CDN)
+                             ↓
+                        AWS S3 (Static Hosting)
+                             ↓
+                        AWS API Gateway
+                             ↓
+                        AWS Lambda (Business Logic)
+                             ↓
+                        AWS DynamoDB (Database)
+                             ↓
+                        AWS Cognito (Auth)
